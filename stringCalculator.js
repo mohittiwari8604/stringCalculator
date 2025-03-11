@@ -1,29 +1,9 @@
 function calculate(str){
     if(str==="") return 0;
-    if(str.length===1 && typeof Number(str[0])==="number" ) return Number(str[0])
+    if(str.length===1 && !!isNaN(str) ) return Number(str)
 
-    let delimiter = /,|\n/;
+    const arr= str.split(/[^0-9-]+/g).map(n=>Number(n)).filter(n=>!isNaN(n));
 
-    const customDelimiterMatch = str.match(/^\/\/(\[.*?\]|.)\n/);
-    if (customDelimiterMatch) {
-        const delimiterSection = customDelimiterMatch[1];
-        str = str.slice(customDelimiterMatch[0].length); 
-
-        
-        const multipleDelimiters = delimiterSection.match(/\[([^\[\]]+)\]/g);
-        if (multipleDelimiters) {
-            delimiter = new RegExp(
-                multipleDelimiters
-                    .map(d => d.slice(1, -1).replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&"))
-                    .join("|"),
-                "g"
-            );
-        } else {
-            delimiter = new RegExp(delimiterSection.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&"), "g");
-        }
-    }
-
-    const arr=str.split(delimiter).map(n=>Number(n));
     const negative = arr.filter(n=>n<0);
     if(negative.length>0){
         throw new Error(`Found negative numbers:- ${negative.join(", ")}`)
