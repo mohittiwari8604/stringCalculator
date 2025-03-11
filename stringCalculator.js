@@ -32,5 +32,4 @@ function calculate(str){
    return sum;
 }
 
-console.log(calculate("1,2,1001,1010"))
 module.exports =calculate;
