@@ -28,7 +28,9 @@ function calculate(str){
     if(negative.length>0){
         throw new Error(`Found negative numbers:- ${negative.join(", ")}`)
     }
-   const sum = arr.reduce((acc,curr)=>acc+curr,0)
+   const sum = arr.reduce((acc,curr)=>acc+(curr>1000?0:curr),0)
    return sum;
 }
+
+console.log(calculate("1,2,1001,1010"))
 module.exports =calculate;

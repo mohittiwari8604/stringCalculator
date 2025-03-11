@@ -23,5 +23,7 @@ describe("Test suite for String Calculator",()=>{
     test("Should throw exception if negative numbers",()=>{
         expect(()=>calculate("-1,2,-3")).toThrow("Found negative numbers:- -1, -3");
     })
-
+    test("Should ignore numbers greater than 1000",()=>{
+        expect(calculate("1,2,1001,1010")).toBe(3);
+    })
 })
