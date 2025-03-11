@@ -25,7 +25,6 @@ function calculate(str){
 
     const arr=str.split(delimiter).map(n=>Number(n));
     const negative = arr.filter(n=>n<0);
-    console.log(negative)
     if(negative.length>0){
         throw new Error(`Found negative numbers:- ${negative.join(", ")}`)
     }
