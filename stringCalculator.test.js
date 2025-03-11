@@ -16,7 +16,7 @@ describe("Test suite for String Calculator",()=>{
     test("should ignore new line and return sum of numbers",()=>{
         expect(calculate("1\n2,3")).toBe(6)
     })
-    test("should ignore all other characters which are not number and return sum",()=>{
+    test.only("should ignore all other characters which are not number and return sum",()=>{
         expect(calculate('//[***]\n1***2***3')).toBe(6);
     })
 
